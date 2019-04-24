@@ -19,7 +19,7 @@ export class User extends VersionBase {
   @Column({ type: 'varchar', length: 100 })
   name: string;
 
-  @Column({ type: 'varchar', length: 100, primary: true, unique: true })
+  @Column({ type: 'varchar', length: 150, primary: true, unique: true })
   email: string;
 
   @Column({ type: 'varchar', length: 12, primary: true, unique: true })
