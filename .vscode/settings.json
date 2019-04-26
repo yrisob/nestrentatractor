@@ -1,3 +1,6 @@
 {
-    "debug.node.autoAttach": "off"
+    "debug.node.autoAttach": "off",
+    "typescript.autoClosingTags": false,
+    "javascript.autoClosingTags": false,
+    "auto-close-tag.enableAutoCloseSelfClosingTag": false
 }
