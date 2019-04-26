@@ -2,8 +2,8 @@ import { IsInt, IsString } from 'class-validator';
 
 export class Cat {
   @IsInt()
-  id: number;
+  id: number | undefined = undefined;
 
   @IsString()
-  name: string;
+  name: string | undefined = undefined;
 }

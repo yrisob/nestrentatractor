@@ -10,7 +10,9 @@ import {
   Body,
   Patch,
   Delete,
+  BadRequestException,
 } from '@nestjs/common';
+import { validateClasses } from '../utils/validate.class';
 
 export interface ICrudHost {
   create(dto: any): Promise<any>;
@@ -23,6 +25,7 @@ export interface ICrudHost {
 export function CrudController(
   service: Type<ICrudService>,
   prefix: string,
+  typeDto: Type<object>,
 ): Type<ICrudHost> {
   @Controller(prefix)
   class CrudControllerHost implements ICrudHost {
@@ -40,7 +43,15 @@ export function CrudController(
 
     @Post()
     async create(@Body() dto): Promise<any> {
-      return this.crudService.create(dto);
+      const validationResult = validateClasses(new typeDto(), dto);
+      if (!validationResult) {
+        return this.crudService.create(dto);
+      } else {
+        throw new BadRequestException(
+          { error: validationResult },
+          'bad request',
+        );
+      }
     }
 
     @Patch(':id')
@@ -48,7 +59,15 @@ export function CrudController(
       @Param('id', new ParseIntPipe()) id,
       @Body() dto,
     ): Promise<any> {
-      return this.crudService.update(id, dto);
+      const validationResult = validateClasses(new typeDto(), dto);
+      if (!validationResult) {
+        return this.crudService.update(id, dto);
+      } else {
+        throw new BadRequestException(
+          { error: validationResult },
+          'bad request',
+        );
+      }
     }
 
     @Delete(':id')
