@@ -1,4 +1,4 @@
 export declare class Cat {
-    id: number;
-    name: string;
+    id: number | undefined;
+    name: string | undefined;
 }

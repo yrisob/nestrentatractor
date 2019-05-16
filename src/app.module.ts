@@ -6,10 +6,13 @@ import { CatController } from './cat/cat.controller';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Connection } from 'typeorm';
 
 @Module({
   imports: [AuthModule, UserModule, TypeOrmModule.forRoot()],
   controllers: [AppController, CatController],
   providers: [AppService, CatService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private readonly connection: Connection) {}
+}

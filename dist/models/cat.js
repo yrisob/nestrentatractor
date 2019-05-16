@@ -11,6 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
 class Cat {
+    constructor() {
+        this.id = undefined;
+        this.name = undefined;
+    }
 }
 __decorate([
     class_validator_1.IsInt(),

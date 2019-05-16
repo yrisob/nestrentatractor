@@ -7,29 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-let CatService = class CatService {
-    constructor() {
-        this.cats = [];
-    }
-    create(cat) {
-        this.cats.push(cat);
-    }
-    findAll() {
-        return this.cats;
-    }
-    findById(id) {
-        return this.cats.find(value => value.id === id);
-    }
-    update(id, newData) {
-        const updatedCat = this.findById(id);
-        if (updatedCat) {
-            updatedCat.name = newData.name;
-            return updatedCat;
-        }
-        else {
-            return undefined;
-        }
-    }
+const crud_service_1 = require("../crud/crud.service");
+const cat_entity_1 = require("../entities/cat.entity");
+const cat_repository_1 = require("./cat.repository");
+let CatService = class CatService extends crud_service_1.CrudService(cat_repository_1.CatRepository, cat_entity_1.CatEntity) {
 };
 CatService = __decorate([
     common_1.Injectable()

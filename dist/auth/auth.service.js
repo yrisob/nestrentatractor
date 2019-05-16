@@ -20,6 +20,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const user_service_1 = require("../user/user.service");
 const jwt = require("jsonwebtoken");
+const config_1 = require("../config/config");
 let AuthService = class AuthService {
     constructor(userService) {
         this.userService = userService;
@@ -41,7 +42,7 @@ let AuthService = class AuthService {
     }
     createToken(user) {
         console.log('get the expiration');
-        const expiresIn = 3600;
+        const expiresIn = config_1.Config.expiresIn;
         console.log('sign the token');
         console.log(user);
         const accessToken = jwt.sign({
@@ -49,7 +50,7 @@ let AuthService = class AuthService {
             email: user.email,
             phone: user.phone,
             name: user.name,
-        }, 'ILovePokemon', { expiresIn });
+        }, config_1.Config.jwtSecretKey, { expiresIn });
         console.log('return the token');
         console.log(accessToken);
         return {

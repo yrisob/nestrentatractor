@@ -13,11 +13,13 @@ const cat_service_1 = require("./cat/cat.service");
 const cat_controller_1 = require("./cat/cat.controller");
 const auth_module_1 = require("./auth/auth.module");
 const user_module_1 = require("./user/user.module");
+const typeorm_1 = require("@nestjs/typeorm");
+const cat_repository_1 = require("./cat/cat.repository");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
-        imports: [auth_module_1.AuthModule, user_module_1.UserModule],
+        imports: [auth_module_1.AuthModule, user_module_1.UserModule, typeorm_1.TypeOrmModule.forFeature([cat_repository_1.CatRepository])],
         controllers: [app_controller_1.AppController, cat_controller_1.CatController],
         providers: [app_service_1.AppService, cat_service_1.CatService],
     })
