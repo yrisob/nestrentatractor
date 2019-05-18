@@ -6,6 +6,11 @@
     "username": "root",
     "password": "gfhjkm1986",
     "database": "TESTDB",
-    "entities": ["src/**/**.entity{.ts,.js}"],
+    "migrations": ["dist/migration/**/*.js"],
+    "cli": {
+        "migrationsDir": "migration",
+        "entitiesDir": "src/entity"
+    },
+    "entities": ["dist/src/entities/**.entity.js"],
     "synchronize": false
 }

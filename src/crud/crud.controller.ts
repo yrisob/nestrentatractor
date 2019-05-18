@@ -46,6 +46,10 @@ export function CrudController(
   class CrudControllerHost implements ICrudHost {
     @Inject(service) readonly crudService;
 
+    getService(): ICrudService {
+      return this.crudService;
+    }
+
     @Get()
     @UseGuards(findAllGuard ? findAllGuard : DefaultGuard)
     async findAll(): Promise<any> {
